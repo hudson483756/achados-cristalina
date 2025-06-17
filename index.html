@@ -1,102 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ofertas e promoções">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Achados_Cristalina</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
+      margin: 0; padding: 0;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
+      background-color: #f5f5f5; color: #333;
     }
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    header, footer {
+      background-color: #2c3e50; color: white;
+      text-align: center; padding: 20px;
     }
     nav {
-      text-align: center;
-      background-color: #34495e;
-      padding: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      background-color: #34495e; padding: 10px; text-align: center;
+      position: sticky; top: 0; z-index: 999;
     }
     nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      display: inline-block;
-      padding: 5px;
-      cursor: pointer;
-    }
-    nav a i {
-      margin-right: 5px;
-    }
-    .mobile-nav {
-      display: none;
-      background-color: #34495e;
-      padding: 10px;
-    }
-    .mobile-nav a {
-      display: block;
-      color: white;
-      padding: 10px;
-      text-decoration: none;
-      border-bottom: 1px solid #2c3e50;
-    }
-    .menu-icon {
-      display: none;
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
-      padding: 10px;
+      color: white; text-decoration: none; margin: 0 15px;
+      padding: 5px 10px; display: inline-block;
     }
     .container {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .aviso {
-      background-color: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeeba;
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-    h2 {
-      margin-top: 40px;
-      color: #2c3e50;
+      max-width: 1000px; margin: auto; padding: 20px;
     }
     .produto {
-      background: white;
-      margin-bottom: 20px;
-      padding: 15px;
-      border-radius: 10px;
+      background: white; margin-bottom: 20px;
+      border-radius: 10px; padding: 15px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex; gap: 20px; position: relative;
       transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
     }
     .produto:hover {
       transform: translateY(-5px);
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
     .produto img {
-      max-width: 200px;
-      border-radius: 5px;
+      max-width: 200px; border-radius: 5px;
     }
     .produto-conteudo {
       flex: 1;
@@ -104,120 +47,68 @@
     .produto h3 {
       margin-top: 0;
     }
-    .produto p {
-      background: #ecf0f1;
-      padding: 10px;
-      border-radius: 5px;
-      margin-top: 10px;
-      display: none;
+    .produto .descricao {
+      display: none; margin-top: 10px;
+      background: #ecf0f1; padding: 10px; border-radius: 5px;
     }
-    .produto:hover p {
+    .produto:hover .descricao {
       display: block;
     }
     .botao {
       display: inline-block;
-      background-color: #e67e22;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
+      background-color: #e67e22; color: white;
+      padding: 10px 15px; border-radius: 5px;
+      text-decoration: none; margin-top: 10px;
     }
+    .aviso {
+      background-color: #fff3cd; color: #856404;
+      border: 1px solid #ffeeba; padding: 15px;
+      border-radius: 5px; margin-bottom: 20px;
+    }
+    section { display: none; }
+    #inicio { display: block; }
     .sobre, .contato {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-top: 30px;
-      display: none;
+      background: white; padding: 20px;
+      border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label {
-      margin-top: 10px;
-    }
-    input, textarea, select {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-top: 5px;
+    form { display: flex; flex-direction: column; }
+    label { margin-top: 10px; }
+    input, textarea {
+      padding: 10px; border-radius: 5px;
+      border: 1px solid #ccc; margin-top: 5px;
     }
     button {
-      margin-top: 15px;
-      padding: 10px;
-      border: none;
-      background-color: #2c3e50;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    footer {
-      background-color: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-    @media (max-width: 768px) {
-      .menu-icon {
-        display: inline-block;
-      }
-      nav {
-        display: none;
-      }
-      .mobile-nav {
-        display: none;
-      }
-      .mobile-nav.show {
-        display: block;
-      }
-      .produto {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .produto img {
-        max-width: 100%;
-      }
+      margin-top: 15px; padding: 10px;
+      background-color: #2c3e50; color: white;
+      border: none; border-radius: 5px; cursor: pointer;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Achados_Cristalina</h1>
-    
   </header>
-  <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
   <nav>
-    <a onclick="mostrarSecao('inicio')"><i class="fas fa-home"></i> Início</a>
-    <a onclick="mostrarSecao('sobre')"><i class="fas fa-info-circle"></i> Sobre</a>
-    <a onclick="mostrarSecao('contato')"><i class="fas fa-envelope"></i> Contato</a>
+    <a href="#" onclick="mostrarSecao('inicio')">Início</a>
+    <a href="#" onclick="mostrarSecao('sobre')">Sobre</a>
+    <a href="#" onclick="mostrarSecao('contato')">Contato</a>
   </nav>
-  <div class="mobile-nav" id="mobileMenu">
-    <a onclick="mostrarSecao('inicio'); toggleMenu();"><i class="fas fa-home"></i> Início</a>
-    <a onclick="mostrarSecao('sobre'); toggleMenu();"><i class="fas fa-info-circle"></i> Sobre</a>
-    <a onclick="mostrarSecao('contato'); toggleMenu();"><i class="fas fa-envelope"></i> Contato</a>
-  </div>
+
   <div class="container">
-  <section id="inicio">
-    <div class="aviso">
-      Ao clicar nos links, você será redirecionado para o site do Mercado Livre ou Magazine Luiza.
-      Compras realizadas por esses links podem gerar comissões para este site ajudando a manter o projeto ativo.
-      <br>
-      <strong>O Mercado Livre está com Frete Grátis nas compras acima de R$ 19,00</strong>
-    </div>
-
-    <!-- PRODUTOS DINÂMICOS AQUI -->
-    <div id="produtos"></div>
-
-
+    <section id="inicio">
+      <div class="aviso">
+        Ao clicar nos links, você será redirecionado para o site do Mercado Livre ou Magazine Luiza.
+        Compras realizadas através de nossos links ajudam a manter o projeto ativo. <br>
+        <strong>Mercado-Livre: Frete grátis em compras acima de R$ 19,00</strong>
+      </div>
+      <div id="produtos"></div>
     </section>
+
     <section id="sobre" class="sobre">
       <h2>Sobre</h2>
-      <p>Sejam bem vindos!<br> O Achados_Cristalina seleciona os melhores produtos do Mercado Livre e Magazine Luiza, organizados de forma prática para facilitar sua escolha.<br> Ao comprar pelos nossos links, você ajuda o projeto a crescer.</p>
+      <p>Bem-vindo ao Achados_Cristalina! Selecionamos os melhores produtos com links de afiliado para você economizar tempo e dinheiro. Suas compras realizadas através de nossos links ajudam a manter o projeto ativo.</p>
     </section>
+
     <section id="contato" class="contato">
       <h2>Contato</h2>
       <form action="https://formsubmit.co/seu@email.com" method="POST">
@@ -234,67 +125,50 @@
       </form>
     </section>
   </div>
+
   <footer>
     <p>&copy; 2025 Achados_Cristalina - Todos os direitos reservados</p>
-    <p>Links de afiliado podem gerar comissões para o site.</p>
   </footer>
+
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('show');
-    }
     function mostrarSecao(secao) {
-      document.title = `Achados_Cristalina - ${secao.charAt(0).toUpperCase() + secao.slice(1)}`;
-      history.pushState({}, '', `#${secao}`);
       document.querySelectorAll('section').forEach(s => s.style.display = 'none');
       document.getElementById(secao).style.display = 'block';
     }
-    window.onload = () => {
-      const hash = location.hash.replace('#','') || 'inicio';
-      mostrarSecao(hash);
+
+    async function carregarProdutos() {
+      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRKWATllvs1D6Do2Z6PEN1-i1l4M9JyujUoFWQp6yze5Byr-laYFIrxVNDy5yRftwUe2uuE0lHyaKN_/pub?output=csv";
+      const response = await fetch(url);
+      const texto = await response.text();
+
+      const linhas = texto.trim().split('\n');
+      const cabecalhos = linhas[0].split(',');
+
+      const produtosDiv = document.getElementById('produtos');
+
+      for (let i = 1; i < linhas.length; i++) {
+        const dados = linhas[i].split(',');
+        const [nome, preco, nota, imagem, link, descricao] = dados;
+
+        const produtoHTML = `
+          <div class="produto">
+            <img src="${imagem}" alt="${nome}">
+            <div class="produto-conteudo">
+              <h3>${nome}</h3>
+              <p><strong>${preco}</strong></p>
+              <div class="descricao">
+                <strong>Nota:</strong> ${nota}<br><br>
+                ${descricao}
+              </div>
+              <a href="${link}" target="_blank" class="botao">Ver Oferta</a>
+            </div>
+          </div>`;
+        
+        produtosDiv.innerHTML += produtoHTML;
+      }
     }
+
+    window.onload = carregarProdutos;
   </script>
-	  <script>
-  async function carregarProdutos() {
-    const url = "https://docs.google.com/spreadsheets/d/1bSf-UKynZUz4EC4hZWhv8GlsCdcRHB1ASgAt65DlHi4/edit?usp=sharing";
-    const resposta = await fetch(url);
-    const csv = await resposta.text();
-    const linhas = csv.trim().split("\n").slice(1); // pula cabeçalho
-
-    const container = document.getElementById("produtos");
-    container.innerHTML = "";
-
-    linhas.forEach(linha => {
-      const colunas = linha.split(",");
-
-      const nome = colunas[0];
-      const preco = colunas[1];
-      const nota = colunas[2];
-      const imagem = colunas[3];
-      const link = colunas[4];
-      const descricao = colunas[5];
-
-      const html = `
-        <div class="produto">
-          <img src="${imagem}" alt="${nome}">
-          <div class="produto-conteudo">
-            <h3>${nome}</h3>
-            <p><strong>${preco}</strong></p>
-            <p>
-              <strong>Preço:</strong> ${preco}<br>
-              <strong>Nota:</strong> ${nota} <br><br>
-              ${descricao}
-            </p>
-            <a href="${link}" class="botao" target="_blank">Ver Oferta</a>
-          </div>
-        </div>
-      `;
-
-      container.innerHTML += html;
-    });
-  }
-
-  carregarProdutos();
-</script>
 </body>
 </html>
