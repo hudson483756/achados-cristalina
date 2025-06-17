@@ -201,38 +201,16 @@
     <a onclick="mostrarSecao('contato'); toggleMenu();"><i class="fas fa-envelope"></i> Contato</a>
   </div>
   <div class="container">
-    <section id="inicio">
-      <div class="aviso">Ao clicar nos links, você será redirecionado para o site do Mercado Livre ou Magazine Luiza. 
-	  Compras realizadas por esses links podem gerar comissões para este site ajudando a manter o projeto ativo. <br> <strong>O Mercado Livre está com Frete Grátis nas compras acima de R$ 19,00 </strong></div>
-      
-           <div class="produto">
-  <img src="https://http2.mlstatic.com/D_NQ_NP_2X_668638-MLB83745497603_042025-F-jaqueta-sarja-masculina-com-capuz-removivel-forrada.webp" alt="Jaqueta Sarja Masculina">
-  <div class="produto-conteudo">
-    <h3>Jaqueta Sarja Masculina Com Capuz Removível Forrada</h3>
-    <p><strong>R$ 218,99</strong></p>
-	  <p>
-      <strong>Preço:</strong> R$ 218,99<br>
-      <strong>Nota:</strong> ★★★★☆ 4,7/5 425 avaliações <br><br>
-      JAQUETA MASCULINA SARJA COM FORRO PELUCIADO INTERNO. MODA OUTONO INVERNO. CAPUZ REMOVIVEL POSSUI 4 BOLSOS EXTERNO E 1 BOLSO INTERNO
-POSSUI PUNHO NAS MANGAS PERMITINDO QUE ELA NÃO SUBA, PODENDO SER ULTILIZADA TAMBEM PARA AQUELES QUE ULTILIZAM MOTO COMO TRANSPORTE.
-PRODUTO DE OTIMA QUALIDADE.
-    </p>
-    <a href="https://mercadolivre.com/sec/2yR4uRo " class="botao" target="_blank">Ver Oferta</a>
-  </div>
-  </div>
-		    <div class="produto">
-			<img src="https://http2.mlstatic.com/D_NQ_NP_2X_956009-MLB82932070464_032025-F-parafusadeira-furadeira-sem-fio-bateria-21v-2bateria.webp" alt="Parafusadeira ">
-		   <div class="produto-conteudo">
-    <h3>Parafusadeira Furadeira Sem Fio Bateria 21v +2bateria</h3>
-    <p><strong>R$ 218,99</strong></p>
-			   <p>
-      <strong>Preço:</strong> R$ 162,95<br>
-      <strong>Nota:</strong> ★★★★☆ 4,3/5 16 avaliações <br><br>
-      A Furadeira Parafusadeira GEELE é ideal para profissionais e entusiastas do "faça você mesmo" que buscam eficiência e precisão em trabalhos de perfuração e parafusamento em diversos materiais, como madeira, aço e concreto. Seja para uso em casa, no escritório, em obras ou em oficinas, ela atende tanto pequenas reformas quanto projetos de grande porte. A ferramenta também é excelente para montadores de móveis, eletricistas, marceneiros e técnicos que precisam de um equipamento confiável e prático.
-    </p>
-    <a href="https://mercadolivre.com/sec/1ZGH5Up" class="botao" target="_blank">Ver Oferta</a>
-  </div>
-</div>
+  <section id="inicio">
+    <div class="aviso">
+      Ao clicar nos links, você será redirecionado para o site do Mercado Livre ou Magazine Luiza.
+      Compras realizadas por esses links podem gerar comissões para este site ajudando a manter o projeto ativo.
+      <br>
+      <strong>O Mercado Livre está com Frete Grátis nas compras acima de R$ 19,00</strong>
+    </div>
+
+    <!-- PRODUTOS DINÂMICOS AQUI -->
+    <div id="produtos"></div>
 
 
     </section>
@@ -276,5 +254,47 @@ PRODUTO DE OTIMA QUALIDADE.
       mostrarSecao(hash);
     }
   </script>
+	  <script>
+  async function carregarProdutos() {
+    const url = "https://docs.google.com/spreadsheets/d/1bSf-UKynZUz4EC4hZWhv8GlsCdcRHB1ASgAt65DlHi4/edit?usp=sharing";
+    const resposta = await fetch(url);
+    const csv = await resposta.text();
+    const linhas = csv.trim().split("\n").slice(1); // pula cabeçalho
+
+    const container = document.getElementById("produtos");
+    container.innerHTML = "";
+
+    linhas.forEach(linha => {
+      const colunas = linha.split(",");
+
+      const nome = colunas[0];
+      const preco = colunas[1];
+      const nota = colunas[2];
+      const imagem = colunas[3];
+      const link = colunas[4];
+      const descricao = colunas[5];
+
+      const html = `
+        <div class="produto">
+          <img src="${imagem}" alt="${nome}">
+          <div class="produto-conteudo">
+            <h3>${nome}</h3>
+            <p><strong>${preco}</strong></p>
+            <p>
+              <strong>Preço:</strong> ${preco}<br>
+              <strong>Nota:</strong> ${nota} <br><br>
+              ${descricao}
+            </p>
+            <a href="${link}" class="botao" target="_blank">Ver Oferta</a>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML += html;
+    });
+  }
+
+  carregarProdutos();
+</script>
 </body>
 </html>
